@@ -30,7 +30,8 @@ app.use(cookieParser());
 // ROUTES
 // ----------------------
 
-app.use("/api/v1/users", UserRoutes);
+app.use("/api/v1/user", UserRoutes);
+
 
 // Health check (optional but recommended)
 app.get("/api/v1/health", (req, res) => {
