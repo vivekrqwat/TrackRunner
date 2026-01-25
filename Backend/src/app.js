@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-
+import limiter from "../src/middlewares/limiter.js"
 // Routes
 import UserRoutes from "./routes/user.routes.js";
 
@@ -30,7 +30,7 @@ app.use(cookieParser());
 // ROUTES
 // ----------------------
 
-app.use("/api/v1/user", UserRoutes);
+app.use("/api/v1/user",limiter, UserRoutes);
 
 
 // Health check (optional but recommended)
