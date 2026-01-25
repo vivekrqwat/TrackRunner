@@ -5,7 +5,8 @@ import './App.css'
 // import LoginConatiner from './Pages/LoginPAge/LoginConatiner'
 import HOMEPAGE from './Pages/HOMEPAGE/HOMEPAGE'
 import Navbar from './Components/Navbar/Navbar'
-import Dashboard from './Pages/Dashboard/Dashboard'
+
+import DashBoardConatiner from './Pages/Dashboard/DashBoardConatiner'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,7 +15,7 @@ function App() {
     <>
     {/* <LoginConatiner></LoginConatiner> */}
     {/* <HOMEPAGE></HOMEPAGE> */}
-    <Dashboard></Dashboard>
+   <DashBoardConatiner></DashBoardConatiner>
      </>
   )
 }
