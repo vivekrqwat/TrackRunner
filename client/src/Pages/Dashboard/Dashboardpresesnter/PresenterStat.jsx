@@ -1,5 +1,5 @@
 import React from 'react'
-import { User, Award, TrendingUp, Clock, MapPin, Calendar, Target, Zap } from 'lucide-react'
+import { User, Award,TrendingUp, Clock, MapPin, Calendar, Target, Zap } from 'lucide-react'
 
 export default function PresenterStat() {
   return (
