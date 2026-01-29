@@ -1,8 +1,10 @@
 import dotenv from "dotenv";
 import path from "path";
+import http from "http";
 import { fileURLToPath } from "url";
 import connectDb from "./src/Db/index.js";
 import app from "./src/app.js"; // your express app
+import initsocket from "./src/sockets/sockets.js";
 
 // --- Resolve __dirname for ES modules ---
 const __filename = fileURLToPath(import.meta.url);
@@ -21,13 +23,16 @@ if (!process.env.MONGODB_URI) {
 
 const PORT = process.env.PORT || 8000;
 
+const server = http.createServer(app);
+initsocket(server);
+
 // --- Start Server ONLY after DB connects ---
 const startServer = async () => {
   try {
     console.log("Loading DB...");
     await connectDb();
 
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
     });
   } catch (error) {
