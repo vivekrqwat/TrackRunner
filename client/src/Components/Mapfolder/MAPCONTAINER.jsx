@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import React, { useEffect, useState } from 'react'
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet'
+import Loading from '../genericcomponent/Loading';
 const RecentMaps=({position})=>{
 
    const map=useMap();
@@ -42,7 +43,7 @@ export default function MAPCONTAINER() {
     },[])
 
     if(loading){
-        return <div>loading.....</div>
+        return <Loading message={"Loading map..."}></Loading>
     }
      const icon = L.icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
