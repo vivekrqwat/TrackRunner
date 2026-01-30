@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet'
 import Loading from '../genericcomponent/Loading';
-import {socket} from "../../Socket/Socketio"
+import { socket } from '../../Socket/Socketio';
+
 
 const RecentMaps=({position})=>{
 
@@ -42,13 +43,23 @@ export default function MAPCONTAINER() {
     //     setloading(false);
     //   },  { enableHighAccuracy: true }
     // )
+    
+    if (!navigator.geolocation) {
+  alert("Geolocation is not supported");
+//   setloading(false);
+  return;
+}
 
-    if(!navigator.geolocation){
-        navigator.geolocation.watchPosition(
+
+     const watchId=  navigator.geolocation.watchPosition(
             (position)=>{
 
                 const{latitude,longitude}=position.coords
-                socket.emit(("send-location"),({latitude,longitude}))
+                    socket.emit("send-loaction",({latitude,longitude}))
+                    console.log(latitude,longitude)
+                     setposition([latitude,longitude]);
+                    setloading(false)
+               
 
             },(err)=>{
                 console.log(err)
@@ -56,9 +67,11 @@ export default function MAPCONTAINER() {
         )
 
 
-    }
+    
 
 
+
+ return () => navigator.geolocation.clearWatch(watchId);
 
 
 
