@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet'
 import Loading from '../genericcomponent/Loading';
+import { socket } from '../../Socket/Socketio';
+
+
 const RecentMaps=({position})=>{
 
    const map=useMap();
@@ -25,21 +28,53 @@ export default function MAPCONTAINER() {
     const[loading,setloading]=useState(true);
 
     useEffect(()=>{
-        if(!navigator.geolocation){
-            alert("Geolocation is not supported by your browser");
-            setloading(false);
-            return;
-        }
-        navigator.geolocation.getCurrentPosition((position)=>{
-            const{latitude,longitude}=position.coords;
-            setposition([latitude,longitude]);
-            setloading(false);
-        },
-        err => {
-        alert("Error getting location: " + err.message);
-        setloading(false);
-      },  { enableHighAccuracy: true }
-    )
+    //     if(!navigator.geolocation){
+    //         alert("Geolocation is not supported by your browser");
+    //         setloading(false);
+    //         return;
+    //     }
+    //     navigator.geolocation.getCurrentPosition((position)=>{
+    //         const{latitude,longitude}=position.coords;
+    //         setposition([latitude,longitude]);
+    //         setloading(false);
+    //     },
+    //     err => {
+    //     alert("Error getting location: " + err.message);
+    //     setloading(false);
+    //   },  { enableHighAccuracy: true }
+    // )
+    
+    if (!navigator.geolocation) {
+  alert("Geolocation is not supported");
+//   setloading(false);
+  return;
+}
+
+
+     const watchId=  navigator.geolocation.watchPosition(
+            (position)=>{
+
+                const{latitude,longitude}=position.coords
+                    socket.emit("send-loaction",({latitude,longitude}))
+                    console.log(latitude,longitude)
+                     setposition([latitude,longitude]);
+                    setloading(false)
+               
+
+            },(err)=>{
+                console.log(err)
+            },{ enableHighAccuracy: true }
+        )
+
+
+    
+
+
+
+ return () => navigator.geolocation.clearWatch(watchId);
+
+
+
     },[])
 
     if(loading){

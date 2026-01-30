@@ -1,6 +1,6 @@
 import { Clock } from 'lucide-react'
 
-import React, { use, useEffect, useRef } from 'react'
+import React, {  useEffect, useRef } from 'react'
 
 export default function Timer({start,handleclear}) {
 
@@ -23,6 +23,7 @@ export default function Timer({start,handleclear}) {
  },[start])
  
  useEffect(()=>{
+    if(handleclear)
  handleclear(()=>setseconds(0));
  },[handleclear])
 

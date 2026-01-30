@@ -4,13 +4,15 @@ import LOginPresenter from './LOginPresenter'
 
 export default function LoginConatiner() {
  
-    const getLoginData=(values)=>{}
+  const getLoginData = (values) => {
+    console.log("Login data:", values);
+  };
+
   return (
     <div>
-    
-     <LOginPresenter onSubmit={getLoginData}></LOginPresenter>
+      <LOginPresenter onSubmit={getLoginData} />
     </div>
-  )
+  );
 }
 
 
