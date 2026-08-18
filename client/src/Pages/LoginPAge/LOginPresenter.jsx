@@ -1,21 +1,11 @@
 import React, { useState } from "react";
 
-function LoginContainer() {
-  const getLoginData = (values) => {
-    console.log("Login data:", values);
-  };
 
-  return (
-    <div>
-      <LoginPresenter onSubmit={getLoginData} />
-    </div>
-  );
-}
 
-function LoginPresenter({ onSubmit }) {
+export default function LOginPresenter({ onSubmit }) {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: ""  
   });
 
   const handleChange = (e) => {
@@ -139,6 +129,3 @@ function LoginPresenter({ onSubmit }) {
   );
 }
 
-export default function App() {
-  return <LoginContainer />;
-}

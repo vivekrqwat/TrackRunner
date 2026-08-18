@@ -13,7 +13,7 @@ const app = express();
 
 // CORS
 app.use(cors({
-  origin: process.env.CORS_ORIGIN,
+  origin: "*",
   credentials: true,
 }));
 
@@ -30,7 +30,11 @@ app.use(cookieParser());
 // ROUTES
 // ----------------------
 
-app.use("/api/v1/user",limiter, UserRoutes);
+app.use("/api/v1/user", UserRoutes);
+
+app.get("/ping", (req, res) => {
+  res.json({ status: "success", message: "Ping works" });
+});
 
 
 // Health check (optional but recommended)
