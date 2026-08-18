@@ -75,7 +75,7 @@ export default function MAPCONTAINER() {
 
 
 
-    },[])
+    },[position])
 
     if(loading){
         return <Loading message={"Loading map..."}></Loading>

@@ -7,17 +7,18 @@ import HOMEPAGE from './Pages/HOMEPAGE/HOMEPAGE'
 import Navbar from './Components/Navbar/Navbar'
 
 import DashBoardConatiner from './Pages/Dashboard/DashBoardConatiner'
+import LoginConatiner from './Pages/LoginPAge/LoginConatiner'
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    {/* <LoginConatiner></LoginConatiner> */}
+   {/* <LoginConatiner></LoginConatiner> */}
     <HOMEPAGE></HOMEPAGE>
    {/* <DashBoardConatiner></DashBoardConatiner> */}
      </>
   )
 }
 
-export default App
+

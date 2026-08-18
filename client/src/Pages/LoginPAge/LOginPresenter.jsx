@@ -5,7 +5,7 @@ import React, { useState } from "react";
 export default function LOginPresenter({ onSubmit }) {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: ""  
   });
 
   const handleChange = (e) => {
@@ -129,6 +129,3 @@ export default function LOginPresenter({ onSubmit }) {
   );
 }
 
-export default function App() {
-  return <LoginContainer />;
-}
